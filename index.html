@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel — André</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#534ab7">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+  :root{--bg:#f6f6f4;--surface:#fff;--ink:#1f1f1d;--muted:#6b6b66;--line:rgba(0,0,0,.10);--accent:#534ab7}
+  @media (prefers-color-scheme:dark){:root{--bg:#17171a;--surface:#232327;--ink:#ececea;--muted:#a3a39d;--line:rgba(255,255,255,.12);--accent:#9089e8}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:max(20px,env(safe-area-inset-top)) 16px 32px}
+  .wrap{max-width:680px;margin:0 auto}
+  h1{font-size:21px;font-weight:600;margin:0 0 2px}
+  .date{color:var(--muted);font-size:13px;margin:0 0 20px}
+  h2{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:22px 0 10px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  a.tile{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;text-decoration:none;color:var(--ink);min-height:92px;justify-content:space-between}
+  a.tile:active{transform:scale(.98)}
+  .emo{font-size:26px;line-height:1}
+  .lbl{font-size:14px;font-weight:600}
+  .desc{font-size:12px;color:var(--muted)}
+  .note{font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Painel — André</h1>
+  <p class="date" id="hoje"></p>
+
+  <h2>⚖️ Trabalhista</h2>
+  <div class="grid">
+    <a class="tile" href="https://docs.google.com/spreadsheets/d/1nBzotyfeiclyjx0KCqwpyZWWCKUfQslnUXK1QVlqJGk/edit"><span class="emo">📊</span><span class="lbl">Quadro completo</span><span class="desc">planilha · 18 ações</span></a>
+    <a class="tile" href="https://calendar.google.com/calendar/u/0/r/month"><span class="emo">📅</span><span class="lbl">Datas</span><span class="desc">audiências e julgamentos</span></a>
+    <a class="tile" href="https://pje.trt2.jus.br/consultaprocessual/"><span class="emo">🏛️</span><span class="lbl">Consulta PJe</span><span class="desc">TRT-2</span></a>
+  </div>
+
+  <h2>📌 Geral</h2>
+  <div class="grid">
+    <a class="tile" href="https://calendar.google.com/calendar/u/0/r"><span class="emo">🗓️</span><span class="lbl">Agenda</span><span class="desc">calendário "Eu"</span></a>
+    <a class="tile" href="https://mail.google.com/"><span class="emo">✉️</span><span class="lbl">Gmail</span><span class="desc">caixa de entrada</span></a>
+    <a class="tile" href="https://drive.google.com/"><span class="emo">📁</span><span class="lbl">Drive</span><span class="desc">arquivos</span></a>
+  </div>
+
+  <p class="note">💻 Os atalhos do PC (KB, números do financeiro/patrimônio, backup) rodam só no computador — abra o painel local <b>dia.html</b> na máquina. A planilha pede seu login do Google (conteúdo sigiloso protegido).</p>
+</div>
+<script>
+  const d=new Date();
+  document.getElementById('hoje').textContent=d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long'});
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+</script>
+</body>
+</html>
