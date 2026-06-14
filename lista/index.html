@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Falta no Mercado</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#e84a8a">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<style>
+  :root{
+    --bg:#fff5f8; --bg2:#ffeaf2; --surface:#ffffff; --ink:#3a2230; --muted:#a07d8e;
+    --line:rgba(214,69,127,.16); --accent:#e84a8a; --accent-deep:#c2185b;
+    --soft:#fde4ee; --soft2:#fbd4e3; --warn:#c2185b; --ok:#1f9d6b;
+    --shadow:0 6px 22px rgba(214,69,127,.10);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#1b1118; --bg2:#241620; --surface:#2a1c25; --ink:#f7e7ef; --muted:#c4a1b3;
+      --line:rgba(255,143,184,.18); --accent:#ff7fb2; --accent-deep:#ffa9cb;
+      --soft:#3a2230; --soft2:#46283a; --warn:#ff9ec2; --ok:#5fd6a3;
+      --shadow:0 6px 22px rgba(0,0,0,.30);
+    }
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    margin:0;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:
+      radial-gradient(1200px 420px at 50% -120px, var(--bg2), transparent 70%),
+      var(--bg);
+    min-height:100vh;
+    padding:max(18px,env(safe-area-inset-top)) 16px 48px;
+  }
+  .wrap{max-width:540px;margin:0 auto}
+
+  .hero{
+    background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+    border-radius:24px;padding:22px 22px 20px;color:#fff;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:18px;
+  }
+  .hero::after{content:"";position:absolute;right:-30px;top:-30px;width:140px;height:140px;
+    background:rgba(255,255,255,.13);border-radius:50%}
+  .hero h1{font-size:23px;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;letter-spacing:-.01em}
+  .hero p{margin:0;font-size:13.5px;opacity:.92;line-height:1.45}
+  .heart{font-size:13px;opacity:.9}
+
+  .banner{font-size:12px;color:var(--warn);background:var(--surface);border:1px solid var(--line);
+    border-left:3px solid var(--warn);border-radius:12px;padding:10px 12px;margin:0 0 16px;box-shadow:var(--shadow)}
+
+  .addrow{display:flex;gap:9px;margin:0 0 6px}
+  .addrow input{flex:1;font-size:17px;padding:15px 16px;border:1.5px solid var(--line);
+    border-radius:16px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow);transition:border-color .15s}
+  .addrow input:focus{outline:none;border-color:var(--accent)}
+  .addrow input::placeholder{color:var(--muted)}
+  .addrow button{font-size:16px;font-weight:700;padding:0 20px;border:none;border-radius:16px;
+    background:var(--accent);color:#fff;box-shadow:var(--shadow);transition:transform .1s}
+  .addrow button:active{transform:scale(.95)}
+
+  h2{font-size:12px;font-weight:700;color:var(--accent-deep);text-transform:uppercase;
+    letter-spacing:.06em;margin:24px 0 11px;display:flex;align-items:center;gap:6px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{font-size:14px;padding:10px 15px;border:1.5px solid var(--line);border-radius:999px;
+    background:var(--surface);color:var(--ink);font-weight:500;transition:transform .1s,background .12s}
+  .chip:active{transform:scale(.94);background:var(--soft);border-color:var(--accent)}
+
+  ul{list-style:none;padding:0;margin:0}
+  li{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--line);
+    border-radius:16px;padding:14px 15px;margin-bottom:10px;box-shadow:var(--shadow);
+    animation:pop .22s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(-6px) scale(.98)}to{opacity:1;transform:none}}
+  li .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
+  li .dot.ok{background:var(--ok)}
+  li .dot.pend{background:var(--warn)}
+  li .nome{flex:1;font-size:16.5px;font-weight:500}
+  li .st{font-size:11.5px;color:var(--muted);white-space:nowrap}
+  li .st.ok{color:var(--ok)}
+  li .st.pend{color:var(--warn)}
+  li .rm{font-size:21px;color:var(--muted);background:none;border:none;padding:2px 6px;line-height:1;border-radius:8px}
+  li .rm:active{background:var(--soft)}
+
+  .vazio{color:var(--muted);font-size:14.5px;text-align:center;padding:30px 16px;line-height:1.5}
+  .vazio .big{font-size:34px;display:block;margin-bottom:8px}
+
+  .foot{font-size:12.5px;color:var(--muted);margin-top:26px;text-align:center;line-height:1.7}
+  .foot button{font-size:12.5px;color:var(--accent);background:none;border:none;text-decoration:underline;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>🛒 Falta no Mercado</h1>
+    <p>Anota aqui o que tá acabando <span class="heart">💕</span><br>O André já fica sabendo — sem precisar avisar.</p>
+  </div>
+
+  <div id="banner" class="banner" style="display:none"></div>
+
+  <div class="addrow">
+    <input id="campo" type="text" placeholder="Ex.: leite, papel higiênico…" autocomplete="off" enterkeyhint="done">
+    <button id="add">Anotar</button>
+  </div>
+
+  <h2>✨ Toque rápido</h2>
+  <div class="chips" id="chips"></div>
+
+  <h2>📝 Lista de agora</h2>
+  <ul id="lista"></ul>
+  <div id="vazio" class="vazio"><span class="big">🧺</span>Nada anotado ainda.<br>Toque num item acima ou escreva o que falta.</div>
+
+  <p class="foot">
+    <span id="resumo"></span><br>
+    <button id="limpar">Limpar os já enviados</button>
+  </p>
+</div>
+
+<script>
+  // === Configuração ===
+  // Cole aqui o link /exec do robô do Apps Script depois de publicar.
+  // Enquanto vazio, o app funciona offline (guarda no celular) e mostra um aviso.
+  const ENDPOINT = "";
+
+  const COMUNS = ["Leite","Ovos","Pão","Café","Banana","Maçã","Tomate","Coca zero",
+    "Água com gás","Iogurte","Danette","Frango","Arroz","Feijão","Macarrão","Azeite",
+    "Papel higiênico","Detergente","Sabonete","Manteiga","Queijo","Frutas"];
+
+  const KEY = "falta-mercado-v1";
+  let itens = [];
+  try { itens = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch(e){ itens = []; }
+
+  const $ = s => document.querySelector(s);
+  function salvar(){ localStorage.setItem(KEY, JSON.stringify(itens)); }
+
+  function enviar(it){
+    if(!ENDPOINT){ it.status = "local"; return; }
+    fetch(ENDPOINT, {
+      method:"POST", mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify({ item: it.nome, ts: it.ts, origem:"pwa-erika" })
+    }).then(()=>{ it.status="ok"; salvar(); render(); })
+      .catch(()=>{ it.status="pend"; salvar(); render(); });
+  }
+
+  function add(nome){
+    nome = (nome||"").trim();
+    if(!nome) return;
+    const it = { nome, ts: new Date().toISOString(), status: ENDPOINT ? "enviando" : "local" };
+    itens.unshift(it);
+    salvar(); render();
+    enviar(it);
+  }
+
+  function remover(i){ itens.splice(i,1); salvar(); render(); }
+  function limpar(){ itens = itens.filter(x => x.status==="pend" || x.status==="enviando"); salvar(); render(); }
+
+  function rotuloStatus(s){
+    if(s==="ok") return ["✓ enviado","ok"];
+    if(s==="pend") return ["⏳ tentar de novo","pend"];
+    if(s==="local") return ["salvo no celular","pend"];
+    return ["enviando…",""];
+  }
+
+  function render(){
+    const ul = $("#lista"); ul.innerHTML = "";
+    $("#vazio").style.display = itens.length ? "none" : "block";
+    itens.forEach((it,i)=>{
+      const li = document.createElement("li");
+      const [txt,cls] = rotuloStatus(it.status);
+      li.innerHTML = `<span class="dot ${cls}"></span>`
+        + `<span class="nome">${it.nome.replace(/[<>&]/g,"")}</span>`
+        + `<span class="st ${cls}">${txt}</span>`
+        + `<button class="rm" aria-label="remover">×</button>`;
+      li.querySelector(".rm").onclick = ()=>remover(i);
+      ul.appendChild(li);
+    });
+    const pend = itens.filter(x=>x.status==="pend").length;
+    $("#resumo").textContent = itens.length
+      ? `${itens.length} item(ns) na lista` + (pend?` · ${pend} aguardando rede`:"")
+      : "";
+    $("#banner").style.display = ENDPOINT ? "none" : "block";
+    if(!ENDPOINT) $("#banner").textContent =
+      "Sincronização ainda não foi ligada — por ora a lista fica só neste celular.";
+  }
+
+  const chipBox = $("#chips");
+  COMUNS.forEach(n=>{
+    const b = document.createElement("button");
+    b.className="chip"; b.textContent=n;
+    b.onclick=()=>add(n);
+    chipBox.appendChild(b);
+  });
+
+  $("#add").onclick = ()=>{ add($("#campo").value); $("#campo").value=""; $("#campo").focus(); };
+  $("#campo").addEventListener("keydown", e=>{ if(e.key==="Enter"){ $("#add").click(); }});
+  $("#limpar").onclick = limpar;
+
+  function reprocessa(){ itens.filter(x=>x.status==="pend"||x.status==="enviando").forEach(enviar); }
+  window.addEventListener("online", reprocessa);
+
+  render(); reprocessa();
+  if("serviceWorker" in navigator){ navigator.serviceWorker.register("sw.js").catch(()=>{}); }
+</script>
+</body>
+</html>
