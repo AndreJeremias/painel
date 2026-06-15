@@ -23,12 +23,28 @@
   .lbl{font-size:14px;font-weight:600}
   .desc{font-size:12px;color:var(--muted)}
   .note{font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px}
+  .note code{font-size:11px;background:rgba(0,0,0,.06);padding:1px 5px;border-radius:5px}
+  @media (prefers-color-scheme:dark){.note code{background:rgba(255,255,255,.10)}}
+  .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .stat{display:flex;flex-direction:column;gap:3px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+  .snum{font-size:22px;font-weight:700;letter-spacing:-.02em}
+  .slbl{font-size:13px;font-weight:600}
+  .sfoot{font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>Painel — André</h1>
   <p class="date" id="hoje"></p>
+
+  <h2>💰 Financeiro — 20º Tabelionato</h2>
+  <div class="stats">
+    <div class="stat"><span class="snum">R$ 57.462,88</span><span class="slbl">Faturamento do dia</span><span class="sfoot">Dia 8 · 11/06</span></div>
+    <div class="stat"><span class="snum">R$ 105.807,11</span><span class="slbl">Caixa do dia</span><span class="sfoot">11/06</span></div>
+    <div class="stat"><span class="snum">R$ 1,71 mi</span><span class="slbl">Previsão do mês</span><span class="sfoot">veredito · faixa 1,36–2,77 mi</span></div>
+    <div class="stat"><span class="snum">R$ 570.798</span><span class="slbl">Mês acumulado</span><span class="sfoot">Jun · 8 dias lançados</span></div>
+  </div>
+  <p class="note">📷 Retrato dos números até <b>11/06</b> (gerado do Dashboard). É estático — atualiza no próximo handoff. Ao vivo: <code>localhost:8077</code> no PC. ⚠️ Sexta 12/06 ainda não lançada.</p>
 
   <h2>⚖️ Trabalhista</h2>
   <div class="grid">
@@ -44,7 +60,7 @@
     <a class="tile" href="https://drive.google.com/"><span class="emo">📁</span><span class="lbl">Drive</span><span class="desc">arquivos</span></a>
   </div>
 
-  <p class="note">💻 Os atalhos do PC (KB, números do financeiro/patrimônio, backup) rodam só no computador — abra o painel local <b>dia.html</b> na máquina. A planilha pede seu login do Google (conteúdo sigiloso protegido).</p>
+  <p class="note">💻 Atalhos do PC (KB, patrimônio, backup) rodam só no computador — abra o painel local <b>dia.html</b> na máquina.</p>
 </div>
 <script>
   const d=new Date();
