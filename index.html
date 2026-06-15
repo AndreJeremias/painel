@@ -48,18 +48,36 @@
   <p class="note">📷 Retrato dos números até <b>12/06</b> (gerado do Dashboard). É estático. Ao vivo: <code>localhost:8077</code> no PC.</p>
   <!--FIN:END-->
 
+  <!--ETF:START (gerado por patrimônio/etf/valor-etf.py — não editar à mão)-->
+  <h2>📈 ETFs — carteira global</h2>
+  <div class="stats">
+    <div class="stat"><span class="snum" id="etf-val">R$ 218.652</span><span class="slbl">Valor atual</span><span class="sfoot" id="etf-sub">US$ 43,243 · dólar 5.06</span></div>
+    <div class="stat"><span class="snum" id="etf-ret">+10.95%</span><span class="slbl">Rendimento</span><span class="sfoot">aportado R$ 197.081</span></div>
+  </div>
+  <p class="note">📈 Preços dos ETFs: retrato do dia. <b>O dólar atualiza ao vivo</b> ao abrir. Marcação a mercado (sem IR). Base de cotas anterior a 08/06 é estimada (±3-5%). <span id="etf-stamp"></span></p>
+  <script>
+  (function(){
+    var TOTAL_USD=43243.43, APORTADO=197080.87;
+    function n0(x){return x.toLocaleString('pt-BR',{maximumFractionDigits:0});}
+    function n2(x){return x.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+    function render(fx){
+      var brl=TOTAL_USD*fx, ret=(brl/APORTADO-1)*100;
+      document.getElementById('etf-val').textContent='R$ '+n0(brl);
+      document.getElementById('etf-ret').textContent=(ret>=0?'+':'')+n2(ret)+'%';
+      document.getElementById('etf-sub').textContent='US$ '+n0(TOTAL_USD)+' · dólar '+n2(fx);
+    }
+    render(5.0563);
+    fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL').then(function(r){return r.json();}).then(function(d){
+      var fx=parseFloat(d.USDBRL.bid);
+      if(fx>0){render(fx);document.getElementById('etf-stamp').textContent='Dólar ao vivo '+n2(fx)+' ('+d.USDBRL.create_date.slice(11,16)+').';}
+    }).catch(function(){});
+  })();
+  </script>
+  <!--ETF:END-->
+
   <h2>⚖️ Trabalhista</h2>
   <div class="grid">
     <a class="tile" href="https://docs.google.com/spreadsheets/d/1nBzotyfeiclyjx0KCqwpyZWWCKUfQslnUXK1QVlqJGk/edit"><span class="emo">📊</span><span class="lbl">Quadro completo</span><span class="desc">planilha · 18 ações</span></a>
-    <a class="tile" href="https://calendar.google.com/calendar/u/0/r/month"><span class="emo">📅</span><span class="lbl">Datas</span><span class="desc">audiências e julgamentos</span></a>
-    <a class="tile" href="https://pje.trt2.jus.br/consultaprocessual/"><span class="emo">🏛️</span><span class="lbl">Consulta PJe</span><span class="desc">TRT-2</span></a>
-  </div>
-
-  <h2>📌 Geral</h2>
-  <div class="grid">
-    <a class="tile" href="https://calendar.google.com/calendar/u/0/r"><span class="emo">🗓️</span><span class="lbl">Agenda</span><span class="desc">calendário "Eu"</span></a>
-    <a class="tile" href="https://mail.google.com/"><span class="emo">✉️</span><span class="lbl">Gmail</span><span class="desc">caixa de entrada</span></a>
-    <a class="tile" href="https://drive.google.com/"><span class="emo">📁</span><span class="lbl">Drive</span><span class="desc">arquivos</span></a>
   </div>
 
   <p class="note">💻 Atalhos do PC (KB, patrimônio, backup) rodam só no computador — abra o painel local <b>dia.html</b> na máquina.</p>
