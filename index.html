@@ -51,9 +51,9 @@
   <!--ETF:START (gerado por patrimônio/etf/valor-etf.py — não editar à mão)-->
   <h2>📈 ETFs — carteira global</h2>
   <div class="stats">
-    <div class="stat"><span class="snum" id="etf-val">R$ 220.358</span><span class="slbl">Valor atual</span><span class="sfoot" id="etf-sub">US$ 42,880 · dólar 5.14</span></div>
-    <div class="stat"><span class="snum" id="etf-ret">+11.81%</span><span class="slbl">Rendimento</span><span class="sfoot">aportado R$ 197.081</span></div>
-    <div class="stat"><span class="snum">+2.08%/mês</span><span class="slbl">Taxa equiv. (R$)</span><span class="sfoot">inclui o dólar</span></div>
+    <div class="stat"><span class="snum" id="etf-val">R$ 220.637</span><span class="slbl">Valor atual</span><span class="sfoot" id="etf-sub">US$ 42,880 · dólar 5.15</span></div>
+    <div class="stat"><span class="snum" id="etf-ret">+11.95%</span><span class="slbl">Rendimento</span><span class="sfoot">aportado R$ 197.081</span></div>
+    <div class="stat"><span class="snum">+2.10%/mês</span><span class="slbl">Taxa equiv. (R$)</span><span class="sfoot">inclui o dólar</span></div>
     <div class="stat"><span class="snum">+2.60%/mês</span><span class="slbl">Taxa equiv. (US$)</span><span class="sfoot">só os ativos</span></div>
   </div>
   <p class="note">📈 Preços dos ETFs: retrato do dia. <b>O dólar atualiza ao vivo</b> ao abrir. Marcação a mercado (sem IR). Base de cotas anterior a 08/06 é estimada (±3-5%). <span id="etf-stamp"></span></p>
@@ -68,7 +68,7 @@
       document.getElementById('etf-ret').textContent=(ret>=0?'+':'')+n2(ret)+'%';
       document.getElementById('etf-sub').textContent='US$ '+n0(TOTAL_USD)+' · dólar '+n2(fx);
     }
-    render(5.1390);
+    render(5.1455);
     fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL').then(function(r){return r.json();}).then(function(d){
       var fx=parseFloat(d.USDBRL.bid);
       if(fx>0){render(fx);document.getElementById('etf-stamp').textContent='Dólar ao vivo '+n2(fx)+' ('+d.USDBRL.create_date.slice(11,16)+').';}
