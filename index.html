@@ -30,6 +30,18 @@
   .snum{font-size:22px;font-weight:700;letter-spacing:-.02em}
   .slbl{font-size:13px;font-weight:600}
   .sfoot{font-size:11px;color:var(--muted)}
+  .alvo{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:4px 16px}
+  .alvo-row{display:grid;grid-template-columns:54px minmax(0,1fr) 62px 36px;align-items:center;gap:10px;padding:9px 0}
+  .alvo-row+.alvo-row{border-top:1px solid var(--line)}
+  .alvo-tk{font-size:13px;font-weight:700;letter-spacing:-.01em}
+  .alvo-nm{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .alvo-bar{height:7px;background:rgba(0,0,0,.07);border-radius:4px;overflow:hidden}
+  .alvo-bar>span{display:block;height:100%;background:var(--accent);border-radius:4px}
+  .alvo-pct{font-size:13px;font-weight:700;text-align:right}
+  @media (prefers-color-scheme:dark){.alvo-bar{background:rgba(255,255,255,.10)}}
+  .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin:0 2px 8px}
+  .legend i{display:inline-block;width:15px;border-top:2px solid;vertical-align:middle;margin-right:5px}
+  .chart-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 12px 6px}
 </style>
 </head>
 <body>
@@ -77,6 +89,41 @@
   })();
   </script>
   <!--ETF:END-->
+
+  <!--ALVO:START (carteira-alvo da migração UCITS — editar à mão)-->
+  <h2>🎯 Carteira-alvo — migração p/ irlandeses (XP)</h2>
+  <div class="alvo">
+    <div class="alvo-row"><span class="alvo-tk">CSPX</span><span class="alvo-nm">S&amp;P 500 — núcleo</span><span class="alvo-bar"><span style="width:100%"></span></span><span class="alvo-pct">40%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">ISVUF</span><span class="alvo-nm">Valor EUA (fator)</span><span class="alvo-bar"><span style="width:50%"></span></span><span class="alvo-pct">20%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">Intl</span><span class="alvo-nm">Internacional ex-EUA · a definir</span><span class="alvo-bar"><span style="width:37.5%"></span></span><span class="alvo-pct">15%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">DGRA</span><span class="alvo-nm">Qualidade / dividendo</span><span class="alvo-bar"><span style="width:25%"></span></span><span class="alvo-pct">10%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">IUIT</span><span class="alvo-nm">Tecnologia (S&amp;P IT)</span><span class="alvo-bar"><span style="width:25%"></span></span><span class="alvo-pct">10%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">ZPRV</span><span class="alvo-nm">Small cap valor</span><span class="alvo-bar"><span style="width:12.5%"></span></span><span class="alvo-pct">5%</span></div>
+  </div>
+  <p class="note">🎯 <b>No aporte (dia 5):</b> seguir estes pesos. Tudo <b>UCITS irlandês na XP</b> (livra do imposto de herança dos EUA, dividendo 15%). O slot <b>Internacional 15%</b> aguarda o Flávio confirmar o fundo ex-EUA.</p>
+
+  <div class="legend">
+    <span><i style="border-top-color:var(--accent)"></i>Carteira-alvo (UCITS)</span>
+    <span><i style="border-top-color:var(--muted)"></i>Atual (EUA)</span>
+  </div>
+  <div class="chart-card">
+    <svg viewBox="0 0 640 222" width="100%" style="display:block" role="img" aria-label="Desempenho da carteira-alvo contra a atual, base 100 em set/2019: a alvo terminou em 282 e a atual em 267.">
+      <g style="stroke:var(--line);stroke-width:1">
+        <line x1="8" y1="178.7" x2="632" y2="178.7"/><line x1="8" y1="135.3" x2="632" y2="135.3"/><line x1="8" y1="92" x2="632" y2="92"/><line x1="8" y1="48.7" x2="632" y2="48.7"/>
+      </g>
+      <g style="fill:var(--muted)" font-size="10" text-anchor="middle">
+        <text x="38.8" y="216">2020</text><text x="223.7" y="216">2022</text><text x="408.6" y="216">2024</text><text x="593.5" y="216">2026</text>
+      </g>
+      <polyline style="fill:none;stroke:var(--muted);stroke-width:1.8" stroke-linejoin="round" stroke-linecap="round" points="8.0,178.7 15.7,176.2 23.4,173.7 31.1,170.8 38.8,172.2 46.5,179.8 54.2,191.6 61.9,183.5 69.6,179.5 77.3,177.5 85.0,174.3 92.7,168.3 100.4,171.6 108.1,173.7 115.9,161.9 123.6,157.2 131.3,157.8 139.0,153.4 146.7,148.3 154.4,143.7 162.1,141.1 169.8,140.1 177.5,138.5 185.2,135.5 192.9,140.4 200.6,134.0 208.3,136.9 216.0,130.9 223.7,135.8 231.4,139.4 239.1,136.4 246.8,146.5 254.5,144.7 262.2,155.4 269.9,147.3 277.6,152.7 285.3,163.2 293.0,155.3 300.7,146.2 308.4,151.2 316.1,142.8 323.9,145.7 331.6,142.5 339.3,140.8 347.0,141.8 354.7,134.2 362.4,129.2 370.1,132.3 377.8,137.6 385.5,141.3 393.2,130.4 400.9,123.0 408.6,122.0 416.3,116.0 424.0,110.5 431.7,116.4 439.4,109.1 447.1,107.2 454.8,103.6 462.5,99.9 470.2,97.3 477.9,101.0 485.6,94.8 493.3,99.5 501.0,94.3 508.7,93.6 516.4,99.0 524.1,98.9 531.9,89.4 539.6,81.9 547.3,80.5 555.0,73.8 562.7,68.6 570.4,65.3 578.1,63.0 585.8,60.5 593.5,52.7 601.2,48.4 608.9,60.0 616.6,41.6 624.3,31.2 632.0,34.3"/>
+      <polyline style="fill:none;stroke:var(--accent);stroke-width:2.4" stroke-linejoin="round" stroke-linecap="round" points="8.0,178.7 15.7,176.4 23.4,173.5 31.1,170.6 38.8,171.9 46.5,179.8 54.2,192.0 61.9,183.2 69.6,179.2 77.3,177.2 85.0,173.5 92.7,167.7 100.4,170.7 108.1,172.8 115.9,160.7 123.6,156.6 131.3,156.4 139.0,152.0 146.7,146.5 154.4,141.8 162.1,139.8 169.8,138.5 177.5,136.8 185.2,133.9 192.9,139.5 200.6,132.8 208.3,134.5 216.0,127.9 223.7,134.0 231.4,137.5 239.1,134.6 246.8,144.8 254.5,143.2 262.2,154.4 269.9,145.4 277.6,150.5 285.3,161.7 293.0,152.2 300.7,144.7 308.4,151.3 316.1,142.9 323.9,146.3 331.6,143.1 339.3,142.0 347.0,142.5 354.7,134.6 362.4,129.8 370.1,132.9 377.8,138.7 385.5,142.2 393.2,130.9 400.9,122.9 408.6,121.9 416.3,115.7 424.0,109.9 431.7,117.2 439.4,110.2 447.1,106.9 454.8,103.5 462.5,100.8 470.2,97.6 477.9,100.4 485.6,91.7 493.3,98.2 501.0,92.7 508.7,93.9 516.4,101.7 524.1,103.0 531.9,93.3 539.6,83.9 547.3,81.8 555.0,75.4 562.7,68.3 570.4,63.1 578.1,61.5 585.8,59.4 593.5,52.0 601.2,49.6 608.9,61.5 616.6,37.0 624.3,17.7 632.0,20.8"/>
+      <circle cx="632" cy="20.8" r="3" style="fill:var(--accent)"/><circle cx="632" cy="34.3" r="2.6" style="fill:var(--muted)"/>
+      <g font-size="11" font-weight="700" text-anchor="end">
+        <text x="628" y="13" style="fill:var(--accent)">282</text><text x="628" y="46" style="fill:var(--muted)">267</text>
+      </g>
+    </svg>
+    <p class="sfoot" style="margin:6px 4px 2px">R$ 100 em set/2019 → <b style="color:var(--accent)">R$ 282 alvo</b> × R$ 267 atual · <b>+16,6%/a</b> × +15,6%/a · base 100, total return (proxies de índice)</p>
+  </div>
+  <!--ALVO:END-->
 
   <h2>📚 Ferramentas</h2>
   <div class="grid">
