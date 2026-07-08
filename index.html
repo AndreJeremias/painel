@@ -42,6 +42,19 @@
   .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin:0 2px 8px}
   .legend i{display:inline-block;width:15px;border-top:2px solid;vertical-align:middle;margin-right:5px}
   .chart-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 12px 6px}
+  details.det{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-top:8px;overflow:hidden}
+  details.det>summary{list-style:none;cursor:pointer;padding:13px 16px;font-size:13px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  details.det>summary::-webkit-details-marker{display:none}
+  details.det>summary::after{content:'▾';color:var(--muted);font-size:12px;margin-left:8px}
+  details.det[open]>summary::after{content:'▴'}
+  details.det .body{padding:2px 16px 12px}
+  details.det .alvo{border:0;padding:0}
+  .aptbl{width:100%;border-collapse:collapse;font-size:13px}
+  .aptbl th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;text-align:right;font-weight:600;padding:6px 0}
+  .aptbl th:first-child{text-align:left}
+  .aptbl td{padding:7px 0;text-align:right;border-top:1px solid var(--line)}
+  .aptbl td:first-child{text-align:left;color:var(--muted)}
+  .aptbl tr.tot td{font-weight:700;border-top:2px solid var(--line);color:var(--ink)}
 </style>
 </head>
 <body>
@@ -52,36 +65,78 @@
   <!--FIN:START (gerado por fin/gerar-bloco-painel.py — não editar à mão)-->
   <h2>💰 Financeiro — 20º Tabelionato</h2>
   <div class="stats">
-    <div class="stat"><span class="snum">R$ 66.459,11</span><span class="slbl">Faturamento do dia</span><span class="sfoot">06/07 (Dia 4)</span></div>
-    <div class="stat"><span class="snum">R$ 69.771,11</span><span class="slbl">Caixa do dia</span><span class="sfoot">06/07</span></div>
-    <div class="stat"><span class="snum">R$ 2,12 mi</span><span class="slbl">Previsão do mês</span><span class="sfoot">veredito · Jul/26</span></div>
-    <div class="stat"><span class="snum">R$ 378.683</span><span class="slbl">Mês acumulado</span><span class="sfoot">Jul · 4 dias lançados</span></div>
+    <div class="stat"><span class="snum">R$ 78.575,61</span><span class="slbl">Faturamento do dia</span><span class="sfoot">07/07 (Dia 5)</span></div>
+    <div class="stat"><span class="snum">R$ 0,00</span><span class="slbl">Caixa do dia</span><span class="sfoot">07/07</span></div>
+    <div class="stat"><span class="snum">R$ 2,08 mi</span><span class="slbl">Previsão do mês</span><span class="sfoot">veredito · Jul/26</span></div>
+    <div class="stat"><span class="snum">R$ 457.258</span><span class="slbl">Mês acumulado</span><span class="sfoot">Jul · 5 dias lançados</span></div>
     <div class="stat"><span class="snum">R$ —</span><span class="slbl">Pagamentos do mês</span><span class="sfoot">Jul · até —</span></div>
   </div>
-  <p class="note">📷 Retrato dos números até <b>06/07</b> (gerado do Dashboard). É estático. Ao vivo: <code>localhost:8077</code> no PC.</p>
+  <p class="note">📷 Retrato dos números até <b>07/07</b> (gerado do Dashboard). É estático. Ao vivo: <code>localhost:8077</code> no PC.</p>
   <!--FIN:END-->
 
   <!--ETF:START (gerado por patrimônio/etf/valor-etf.py — não editar à mão)-->
-  <h2>📈 ETFs — carteira global</h2>
+  <h2>📈 ETFs — carteira global (UCITS)</h2>
   <div class="stats">
-    <div class="stat"><span class="snum" id="etf-val">R$ 221.333</span><span class="slbl">Valor atual</span><span class="sfoot" id="etf-sub">US$ 42,766 · dólar 5.18</span></div>
-    <div class="stat"><span class="snum" id="etf-ret">+12.31%</span><span class="slbl">Rendimento</span><span class="sfoot">aportado R$ 197.081</span></div>
-    <div class="stat"><span class="snum">+1.95%/mês</span><span class="slbl">Taxa equiv. (R$)</span><span class="sfoot">inclui o dólar</span></div>
-    <div class="stat"><span class="snum">+2.30%/mês</span><span class="slbl">Taxa equiv. (US$)</span><span class="sfoot">só os ativos</span></div>
+    <div class="stat"><span class="snum" id="etf-val">R$ 214.028</span><span class="slbl">Valor atual</span><span class="sfoot" id="etf-sub">US$ 41,470 · dólar 5.16</span></div>
+    <div class="stat"><span class="snum" id="etf-ret">+8.60%</span><span class="slbl">Rendimento</span><span class="sfoot">aportado R$ 197.081</span></div>
+    <div class="stat"><span class="snum">+1,38%/mês</span><span class="slbl">Taxa equiv. (R$)</span><span class="sfoot">inclui o dólar</span></div>
+    <div class="stat"><span class="snum">+1,77%/mês</span><span class="slbl">Taxa equiv. (US$)</span><span class="sfoot">só os ativos</span></div>
   </div>
-  <p class="note">📈 Preços dos ETFs: retrato do dia. <b>O dólar atualiza ao vivo</b> ao abrir. Marcação a mercado (sem IR). Base de cotas anterior a 08/06 é estimada (±3-5%). <span id="etf-stamp"></span></p>
+  <details class="det">
+    <summary>📊 Posição atual · 5 ETFs</summary>
+    <div class="body">
+      <p class="sfoot" style="margin:2px 0 8px">Cotas compradas na <b>migração de 07/07/2026</b>.</p>
+      <table class="aptbl">
+        <thead><tr><th>ETF</th><th>Cotas</th><th>Preço</th><th>Valor</th><th>%</th></tr></thead>
+        <tbody>
+        <tr><td><b>CSPX</b> <span style="color:var(--muted);font-size:11px">S&P 500 — núcleo</span></td><td>28,39</td><td>US$ 803,22</td><td>US$ 22.806</td><td>55%</td></tr>
+        <tr><td><b>IUVL</b> <span style="color:var(--muted);font-size:11px">Valor EUA (fator)</span></td><td>457,21</td><td>US$ 18,11</td><td>US$ 8.280</td><td>20%</td></tr>
+        <tr><td><b>DGRA</b> <span style="color:var(--muted);font-size:11px">Qualidade / dividendo</span></td><td>72,56</td><td>US$ 57,12</td><td>US$ 4.144</td><td>10%</td></tr>
+        <tr><td><b>IUIT</b> <span style="color:var(--muted);font-size:11px">Tecnologia (S&P IT)</span></td><td>86,79</td><td>US$ 47,88</td><td>US$ 4.156</td><td>10%</td></tr>
+        <tr><td><b>USSC</b> <span style="color:var(--muted);font-size:11px">Small cap valor</span></td><td>22,71</td><td>US$ 91,79</td><td>US$ 2.084</td><td>5%</td></tr>
+        <tr class="tot"><td>Total</td><td></td><td></td><td>US$ 41.470</td><td>100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+  <details class="det">
+    <summary>💸 Histórico de aportes · 13</summary>
+    <div class="body">
+      <table class="aptbl">
+        <thead><tr><th>Data</th><th>Aporte</th><th>Acumulado</th></tr></thead>
+        <tbody>
+        <tr><td>03/06/25</td><td>R$ 5.000</td><td>R$ 5.000</td></tr>
+        <tr><td>01/07/25</td><td>R$ 5.000</td><td>R$ 10.000</td></tr>
+        <tr><td>04/08/25</td><td>R$ 9.234</td><td>R$ 19.234</td></tr>
+        <tr><td>05/09/25</td><td>R$ 10.000</td><td>R$ 29.234</td></tr>
+        <tr><td>06/10/25</td><td>R$ 16.698</td><td>R$ 45.932</td></tr>
+        <tr><td>05/11/25</td><td>R$ 15.500</td><td>R$ 61.432</td></tr>
+        <tr><td>03/12/25</td><td>R$ 27.960</td><td>R$ 89.392</td></tr>
+        <tr><td>05/01/26</td><td>R$ 15.711</td><td>R$ 105.103</td></tr>
+        <tr><td>11/02/26</td><td>R$ 20.581</td><td>R$ 125.684</td></tr>
+        <tr><td>03/03/26</td><td>R$ 15.920</td><td>R$ 141.604</td></tr>
+        <tr><td>07/04/26</td><td>R$ 15.400</td><td>R$ 157.004</td></tr>
+        <tr><td>07/05/26</td><td>R$ 15.223</td><td>R$ 172.227</td></tr>
+        <tr><td>08/06/26</td><td>R$ 24.854</td><td>R$ 197.081</td></tr>
+        <tr class="tot"><td>Total aportado</td><td></td><td>R$ 197.081</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+  <p class="note">🕐 <b>Migração UCITS executada em 07/07/2026.</b> Quantidades de cotas <b>provisórias</b> (US$ investido ÷ preço) — a confirmar com a corretora.</p>
+  <p class="note">📈 Preços dos ETFs: retrato do dia. <b>O dólar atualiza ao vivo</b> ao abrir. <b>Desempenho pré-imposto</b> (o IR de 15% é pago só na declaração anual — não entra aqui) e <b>sem os custos da migração</b>. <b>Taxa equiv.</b> = retorno mensal ponderado pelos aportes (XIRR): R$ inclui o câmbio, US$ só os ativos. <span id="etf-stamp"></span></p>
   <script>
   (function(){
-    var TOTAL_USD=42766.45, APORTADO=197080.87;
+    var TOTAL_USD=41470.34, TOTAL_PERF=41470.34, APORTADO=197080.87;
     function n0(x){return x.toLocaleString('pt-BR',{maximumFractionDigits:0});}
     function n2(x){return x.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
     function render(fx){
-      var brl=TOTAL_USD*fx, ret=(brl/APORTADO-1)*100;
+      var brl=TOTAL_USD*fx, ret=(TOTAL_PERF*fx/APORTADO-1)*100;
       document.getElementById('etf-val').textContent='R$ '+n0(brl);
       document.getElementById('etf-ret').textContent=(ret>=0?'+':'')+n2(ret)+'%';
       document.getElementById('etf-sub').textContent='US$ '+n0(TOTAL_USD)+' · dólar '+n2(fx);
     }
-    render(5.1754);
+    render(5.1610);
     fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL').then(function(r){return r.json();}).then(function(d){
       var fx=parseFloat(d.USDBRL.bid);
       if(fx>0){render(fx);document.getElementById('etf-stamp').textContent='Dólar ao vivo '+n2(fx)+' ('+d.USDBRL.create_date.slice(11,16)+').';}
@@ -90,17 +145,16 @@
   </script>
   <!--ETF:END-->
 
-  <!--ALVO:START (carteira-alvo da migração UCITS — editar à mão)-->
-  <h2>🎯 Carteira-alvo — migração p/ irlandeses (XP)</h2>
+  <!--ALVO:START (contexto da carteira UCITS — editar à mão)-->
+  <h2>🎯 Pesos-alvo da carteira UCITS (executada 07/07)</h2>
   <div class="alvo">
-    <div class="alvo-row"><span class="alvo-tk">CSPX</span><span class="alvo-nm">S&amp;P 500 — núcleo</span><span class="alvo-bar"><span style="width:100%"></span></span><span class="alvo-pct">40%</span></div>
-    <div class="alvo-row"><span class="alvo-tk">ISVUF</span><span class="alvo-nm">Valor EUA (fator)</span><span class="alvo-bar"><span style="width:50%"></span></span><span class="alvo-pct">20%</span></div>
-    <div class="alvo-row"><span class="alvo-tk">Intl</span><span class="alvo-nm">Internacional ex-EUA · a definir</span><span class="alvo-bar"><span style="width:37.5%"></span></span><span class="alvo-pct">15%</span></div>
-    <div class="alvo-row"><span class="alvo-tk">DGRA</span><span class="alvo-nm">Qualidade / dividendo</span><span class="alvo-bar"><span style="width:25%"></span></span><span class="alvo-pct">10%</span></div>
-    <div class="alvo-row"><span class="alvo-tk">IUIT</span><span class="alvo-nm">Tecnologia (S&amp;P IT)</span><span class="alvo-bar"><span style="width:25%"></span></span><span class="alvo-pct">10%</span></div>
-    <div class="alvo-row"><span class="alvo-tk">ZPRV</span><span class="alvo-nm">Small cap valor</span><span class="alvo-bar"><span style="width:12.5%"></span></span><span class="alvo-pct">5%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">CSPX</span><span class="alvo-nm">S&amp;P 500 — núcleo</span><span class="alvo-bar"><span style="width:100%"></span></span><span class="alvo-pct">55%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">IUVL</span><span class="alvo-nm">Valor EUA (fator)</span><span class="alvo-bar"><span style="width:36.4%"></span></span><span class="alvo-pct">20%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">DGRA</span><span class="alvo-nm">Qualidade / dividendo</span><span class="alvo-bar"><span style="width:18.2%"></span></span><span class="alvo-pct">10%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">IUIT</span><span class="alvo-nm">Tecnologia (S&amp;P IT)</span><span class="alvo-bar"><span style="width:18.2%"></span></span><span class="alvo-pct">10%</span></div>
+    <div class="alvo-row"><span class="alvo-tk">USSC</span><span class="alvo-nm">Small cap valor</span><span class="alvo-bar"><span style="width:9.1%"></span></span><span class="alvo-pct">5%</span></div>
   </div>
-  <p class="note">🎯 <b>No aporte (dia 5):</b> seguir estes pesos. Tudo <b>UCITS irlandês na XP</b> (livra do imposto de herança dos EUA, dividendo 15%). O slot <b>Internacional 15%</b> aguarda o Flávio confirmar o fundo ex-EUA.</p>
+  <p class="note">🎯 <b>Pesos-alvo do aporte mensal.</b> Tudo <b>UCITS irlandês na XP</b> (livra do imposto de herança dos EUA, dividendo 15%). Carteira ~100% EUA — o slot ex-EUA caiu (a XP não tem MSCI World ex-USA em UCITS); o fator já vem por IUVL (valor) + USSC (small value). A <b>posição real</b> está acima, no bloco ETFs.</p>
 
   <div class="legend">
     <span><i style="border-top-color:var(--accent)"></i>Carteira-alvo (UCITS)</span>
